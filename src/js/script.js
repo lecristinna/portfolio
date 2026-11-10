@@ -13,24 +13,26 @@ menu.querySelectorAll('a').forEach(link => {
 });
 
 
-// ---------- ACESSIBILIDADE ----------
+// ---------- ACESSIBILIDADE E TEMA ----------
 const painel = document.getElementById('acessibilidade-painel');
+const btnTema = document.getElementById('btn-tema');
 const html = document.documentElement;
 const TAMANHOS = [90, 100, 112.5, 125, 140]; // % do tamanho de texto (o 2º é o padrão)
 
 // Escolhas da pessoa (salvas no navegador para a próxima visita)
-let prefs = { fonte: 1, contraste: false, links: false };
+let prefs = { fonte: 1, escuro: false, links: false };
 try {
   prefs = { ...prefs, ...JSON.parse(localStorage.getItem('acessibilidade')) };
 } catch (e) {}
 
 function aplicar() {
   html.style.fontSize = TAMANHOS[prefs.fonte] + '%';
-  html.classList.toggle('alto-contraste', prefs.contraste);
+  html.classList.toggle('tema-escuro', prefs.escuro);
   html.classList.toggle('links-destacados', prefs.links);
 
+  // O botão de tema mostra para qual tema ele vai trocar
+  btnTema.textContent = prefs.escuro ? 'Tema claro' : 'Tema escuro';
   // Deixa o botão "aceso" quando a opção está ligada
-  document.querySelector('[data-acao="contraste"]').classList.toggle('ativo', prefs.contraste);
   document.querySelector('[data-acao="links"]').classList.toggle('ativo', prefs.links);
 
   try {
@@ -48,9 +50,9 @@ painel.addEventListener('click', (e) => {
   const acao = e.target.dataset.acao;
   if (acao === 'fonte-mais') prefs.fonte = Math.min(prefs.fonte + 1, TAMANHOS.length - 1);
   if (acao === 'fonte-menos') prefs.fonte = Math.max(prefs.fonte - 1, 0);
-  if (acao === 'contraste') prefs.contraste = !prefs.contraste;
+  if (acao === 'tema') prefs.escuro = !prefs.escuro;
   if (acao === 'links') prefs.links = !prefs.links;
-  if (acao === 'restaurar') prefs = { fonte: 1, contraste: false, links: false };
+  if (acao === 'restaurar') prefs = { fonte: 1, escuro: false, links: false };
   aplicar();
 });
 
@@ -58,34 +60,22 @@ aplicar();
 
 
 // ---------- FORMULÁRIO DE CONTATO ----------
-// A validação (campos obrigatórios, e-mail válido) é a do próprio navegador.
-// Aqui só enviamos sem sair da página e mostramos o resultado.
-const form = document.getElementById('form-contato');
-const status = document.getElementById('form-status');
+// Simulação: não envia nada, só confere os campos e mostra um alert
+function enviarFormulario() {
+  // Pega o que foi digitado em cada campo (.trim() tira espaços sobrando)
+  const nome = document.getElementById('nome').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const telefone = document.getElementById('telefone').value.trim();
+  const mensagem = document.getElementById('mensagem').value.trim();
 
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const botao = form.querySelector('button');
-  botao.disabled = true;
-  status.className = 'form-status';
-  status.textContent = 'Enviando…';
-
-  try {
-    // Versão "ajax" do FormSubmit: mesmo endereço, com /ajax/
-    const resposta = await fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
-      method: 'POST',
-      headers: { Accept: 'application/json' },
-      body: new FormData(form),
-    });
-    if (!resposta.ok) throw new Error();
-
-    form.reset();
-    status.classList.add('ok');
-    status.textContent = 'Mensagem enviada! Respondo assim que puder.';
-  } catch (erro) {
-    status.classList.add('erro');
-    status.textContent = 'Não foi possível enviar agora. Se preferir, escreva para le.cristinna15@gmail.com.';
-  } finally {
-    botao.disabled = false;
+  // Se algum campo estiver vazio, pede para preencher; senão, confirma o envio
+  if (nome === '' || email === '' || telefone === '' || mensagem === '') {
+    alert('Por favor, preencha todos os campos.');
+  } else {
+    alert('Mensagem enviada com sucesso!');
+    document.getElementById('form-contato').reset(); // limpa os campos
   }
-});
+}
+
+// Executa a função ao clicar no botão Enviar
+document.getElementById('btn-enviar').addEventListener('click', enviarFormulario);

@@ -197,15 +197,11 @@ nav .container {
 
 .btn-coral {
   align-self: flex-start;
+  margin-top: 20px;
   border: none;
   cursor: pointer;
   background: var(--coral);
   color: var(--azul-escuro);
-}
-
-.btn-coral:disabled {
-  opacity: 0.6;
-  cursor: wait;
 }
 
 
@@ -232,7 +228,7 @@ nav .container {
   box-shadow: 0 20px 50px rgba(31, 110, 118, 0.25);
 }
 
-.sobre-icone svg {
+.sobre-icone img {
   width: 46%;
 }
 
@@ -308,7 +304,7 @@ nav .container {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: var(--coral) url("../img/alfinete.svg");
+  background: var(--coral) url("../img/alfinete.svg") center / 11px no-repeat;  /* caminho relativo a este CSS */
   box-shadow: 0 6px 12px rgba(227, 139, 110, 0.4);
 }
 
@@ -406,13 +402,11 @@ footer {
 .form-contato {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 6px;  /* espaço entre o nome do campo e o campo */
 }
 
 .form-contato label {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  margin-top: 14px;  /* separa um campo do outro */
   font-family: 'Space Mono', monospace;
   font-size: 0.75rem;
   letter-spacing: 0.08em;
@@ -428,9 +422,11 @@ footer {
   background: rgba(250, 246, 236, 0.06);
   font-family: 'Work Sans', sans-serif;
   font-size: 1rem;
-  text-transform: none;
-  letter-spacing: normal;
   color: var(--creme);
+}
+
+.form-contato input::placeholder {
+  color: rgba(250, 246, 236, 0.35);
 }
 
 .form-contato textarea {
@@ -441,19 +437,6 @@ footer {
 .form-contato textarea:focus {
   outline: none;
   border-color: var(--coral);
-}
-
-/* Esconde o campo anti-spam */
-.anti-spam {
-  display: none;
-}
-
-.form-status.ok {
-  color: var(--verde);
-}
-
-.form-status.erro {
-  color: #F4B9A5;
 }
 
 footer {
@@ -554,7 +537,7 @@ footer {
   box-shadow: 0 0 0 2px var(--creme), 0 8px 20px rgba(13, 59, 64, 0.3);  /* anel claro: aparece também no fundo escuro */
 }
 
-.acessibilidade-botao svg {
+.acessibilidade-botao img {
   width: 26px;
 }
 
@@ -620,60 +603,67 @@ footer {
   text-underline-offset: 3px;
 }
 
-/* Alto contraste: fundo preto, texto branco, destaques em amarelo */
-.alto-contraste body,
-.alto-contraste nav,
-.alto-contraste .menu,
-.alto-contraste section,
-.alto-contraste footer,
-.alto-contraste .card,
-.alto-contraste .acessibilidade-painel {
-  background: #000 !important;
-  color: #fff !important;
-  border-color: #fff !important;
-  box-shadow: none !important;
+/* ---------- TEMA ESCURO ---------- */
+/* Ligado quando o JS coloca a classe "tema-escuro" no <html> */
+.tema-escuro body {
+  background: #0E2427;
+  color: #E8F1EE;
 }
 
-.alto-contraste .card,
-.alto-contraste .acessibilidade-painel {
-  border: 2px solid #fff !important;
+.tema-escuro nav {
+  background: rgba(14, 36, 39, 0.85);
+  border-color: rgba(232, 241, 238, 0.08);
 }
 
-.alto-contraste a,
-.alto-contraste .rotulo,
-.alto-contraste .form-contato label {
-  color: #FFEB3B !important;
+.tema-escuro #sobre,
+.tema-escuro .card,
+.tema-escuro .menu,
+.tema-escuro .acessibilidade-painel {
+  background: #16353A;
+  border-color: rgba(232, 241, 238, 0.1);
 }
 
-.alto-contraste .inicio-texto,
-.alto-contraste .card p,
-.alto-contraste .contato-recado,
-.alto-contraste .form-status {
-  color: #fff !important;
+.tema-escuro #contato,
+.tema-escuro footer {
+  background: #081719;
 }
 
-.alto-contraste .tags span,
-.alto-contraste .habilidades span,
-.alto-contraste .form-contato input,
-.alto-contraste .form-contato textarea {
-  background: #000 !important;
-  color: #fff !important;
-  border: 1px solid #fff !important;
+.tema-escuro .rotulo,
+.tema-escuro .inicio-texto,
+.tema-escuro .tags span {
+  color: #9CCFD3;
 }
 
-.alto-contraste .btn,
-.alto-contraste .acessibilidade-botao,
-.alto-contraste .acessibilidade-painel button {
-  background: #000 !important;
-  color: #FFEB3B !important;
-  border: 2px solid #FFEB3B !important;
+.tema-escuro .card p {
+  color: #C5D6D4;
 }
 
-.alto-contraste .acessibilidade-painel button.ativo {
-  background: #FFEB3B !important;
-  color: #000 !important;
+.tema-escuro .tags span,
+.tema-escuro .habilidades span {
+  background: rgba(232, 241, 238, 0.06);
+  border-color: rgba(156, 207, 211, 0.3);
 }
 
-.alto-contraste .menu-botao span {
-  background: #fff;
+.tema-escuro .btn-cheio {
+  background: var(--coral);
+  color: var(--azul-escuro);
+}
+
+.tema-escuro .btn-contorno {
+  border-color: #E8F1EE;
+}
+
+.tema-escuro .menu-botao span {
+  background: #E8F1EE;
+}
+
+.tema-escuro .acessibilidade-painel button {
+  color: #E8F1EE;
+  border-color: rgba(232, 241, 238, 0.2);
+}
+
+.tema-escuro .acessibilidade-painel button.ativo {
+  background: var(--coral);
+  border-color: var(--coral);
+  color: var(--azul-escuro);
 }

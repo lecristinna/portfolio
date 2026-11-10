@@ -152,29 +152,22 @@
             </div>
           </div>
 
-          <!-- Envia pelo FormSubmit (formsubmit.co). No 1º envio chega um e-mail de ativação: é só confirmar -->
-          <form class="form-contato" id="form-contato" action="https://formsubmit.co/le.cristinna15@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="Nova mensagem pelo portfólio">
-            <!-- Anti-spam: campo invisível que só robôs preenchem -->
-            <input type="text" name="_honey" class="anti-spam" tabindex="-1" autocomplete="off">
+          <!-- Formulário de simulação: não envia nada, só mostra um alert (ver script.js) -->
+          <form class="form-contato" id="form-contato">
+            <label for="nome">Nome</label>
+            <input id="nome" type="text">
 
-            <label>
-              Nome
-              <input name="nome" type="text" required>
-            </label>
+            <label for="email">E-mail</label>
+            <input id="email" type="email">
 
-            <label>
-              E-mail
-              <input name="email" type="email" required>
-            </label>
+            <label for="telefone">Telefone</label>
+            <input id="telefone" type="tel" placeholder="(00) 00000-0000">
 
-            <label>
-              Mensagem
-              <textarea name="mensagem" rows="5" required></textarea>
-            </label>
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" rows="5"></textarea>
 
-            <button type="submit" class="btn btn-coral">Enviar mensagem</button>
-            <p class="form-status" id="form-status"></p>
+            <!-- type="button": o clique só chama a função, sem recarregar a página -->
+            <button type="button" id="btn-enviar" class="btn btn-coral">Enviar</button>
           </form>
         </div>
       </div>
@@ -192,7 +185,7 @@
           <button data-acao="fonte-menos">A−</button>
           <button data-acao="fonte-mais">A+</button>
         </div>
-        <button data-acao="contraste">Alto contraste</button>
+        <button data-acao="tema" id="btn-tema">Tema escuro</button>
         <button data-acao="links">Destacar links</button>
         <button data-acao="restaurar">Restaurar padrão</button>
       </div>
