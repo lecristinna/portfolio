@@ -36,50 +36,6 @@ Uma paleta calma, com tons de azul-claro e creme e um toque de coral para os des
 
 **Fontes:** [Fraunces](https://fonts.google.com/specimen/Fraunces) (títulos), [Work Sans](https://fonts.google.com/specimen/Work+Sans) (texto) e [Space Mono](https://fonts.google.com/specimen/Space+Mono) (labels e tags).
 
-## 📁 Estrutura
-
-```
-portfolio/
-├── index.html          # Página única: menu, início, sobre, projetos e contato
-├── README.md
-└── src/
-    ├── css/style.css   # Estilos (as cores ficam no :root, no topo)
-    ├── js/script.js    # Menu mobile, acessibilidade e formulário
-    ├── img/            # Imagens (ex.: print do m'AGILE)
-    └── docs/           # Arquivos para download (ex.: PDF das telas)
-```
-
-## 🚀 Como rodar
-
-Abra o `index.html` no navegador. Se preferir um servidor local:
-
-```bash
-# com Python
-python -m http.server 8000
-
-# ou com Node
-npx serve .
-```
-
-Depois acesse `http://localhost:8000`.
-
-## ➕ Como adicionar um projeto
-
-1. No `index.html`, copie um `<article class="card">` inteiro dentro de `.projetos-grid`.
-2. Troque o rótulo, o título, a descrição, as tags e o link.
-3. Se tiver um arquivo para mostrar (PDF, print), coloque em `src/docs/` ou `src/img/` e aponte o link para ele.
-
-## ✉️ Formulário de contato
-
-As mensagens chegam no e-mail configurado no `action` do formulário (`index.html`).
-
-> **Primeiro envio:** o FormSubmit manda um e-mail de ativação. É só clicar em confirmar; depois disso, as mensagens chegam normalmente.
-
-Para não deixar o e-mail visível no código, troque o endereço no `action` pelo código aleatório que o FormSubmit envia após a ativação.
-
-## 🌐 Publicação (GitHub Pages)
-
-Em **Settings → Pages**, escolha a branch `main` e a pasta `/ (root)`. O site fica disponível em `https://lecristinna.github.io/portfolio/`.
 
 ## 📬 Contato
 
